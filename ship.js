@@ -2,6 +2,7 @@ const Ship = (length) => {
   let shipLength = length || 1;
   let hitsTaken = 0;
   let sunk = false;
+  let X_Axis = true;
   const hit = () => {
     if (sunk) {
       return;
@@ -18,10 +19,14 @@ const Ship = (length) => {
     }
   };
   const getLength = () => shipLength;
+  const changeOrientation = () => !X_Axis;
+  const getOrientation = () => X_Axis;
   return {
     hit,
     isSunk,
     getLength,
+    changeOrientation,
+    getOrientation,
   };
 };
 
