@@ -19,8 +19,8 @@ const Ship = (length) => {
     }
   };
   const getLength = () => shipLength;
-  const changeOrientation = () => !X_Axis;
-  const getOrientation = () => X_Axis;
+  const changeOrientation = () => (X_Axis = !X_Axis);
+  const getOrientation = () => (X_Axis ? "X" : "Y");
   return {
     hit,
     isSunk,
