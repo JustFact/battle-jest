@@ -1,6 +1,7 @@
 const Ship = (length) => {
   let shipLength = length || 1;
   let hitsTaken = 0;
+  let hitCoordinates = [];
   let sunk = false;
   let X_Axis = true;
   const hit = () => {
@@ -10,6 +11,8 @@ const Ship = (length) => {
       hitsTaken++;
     }
   };
+  const getHitCoordinates = () => hitCoordinates;
+  const setHitCoordinate = (x, y) => hitCoordinates.push({ x, y });
   const isSunk = () => {
     if (shipLength - hitsTaken <= 0) {
       sunk = true;
@@ -27,6 +30,8 @@ const Ship = (length) => {
     getLength,
     changeOrientation,
     getOrientation,
+    getHitCoordinates,
+    setHitCoordinate,
   };
 };
 
