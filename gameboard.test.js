@@ -80,3 +80,23 @@ test("Test ship placement", () => {
   expect(gameboard.placeShip(3, 2, ship2)).toBe(true);
   expect(gameboard.getBoard()).toStrictEqual(expectedValue2);
 });
+
+test("Test Ship being hit", () => {
+  let ship = Ship(4);
+  let gameboard = Gameboard();
+  gameboard.placeShip(3, 2, ship);
+  gameboard.receiveAttack(3, 3);
+  gameboard.receiveAttack(3, 3); //hit on same coord. should be ignored
+  gameboard.receiveAttack(3, 5);
+  expect(ship.getHitCoordinates()).toStrictEqual([
+    { x: 3, y: 3 },
+    { x: 3, y: 5 },
+  ]);
+
+  //vertical ship
+  let ship2 = Ship(3);
+  ship2.changeOrientation();
+  gameboard.placeShip(4, 5, ship2);
+  gameboard.receiveAttack(6, 5);
+  expect(ship2.getHitCoordinates()).toStrictEqual([{ x: 6, y: 5 }]);
+});
