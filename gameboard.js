@@ -6,6 +6,15 @@ const Gameboard = () => {
   const receiveAttack = (x, y) => {
     if (board[x][y] === 0) {
       board[x][y] = "x";
+    } else {
+      let ship = board[x][y];
+      let HC = ship.getHitCoordinates();
+      if (HC.find((obj) => obj.x === x && obj.y === y)) {
+        return;
+      } else {
+        ship.setHitCoordinate(x, y);
+        ship.hit();
+      }
     }
   };
 
